@@ -1,0 +1,82 @@
+@import '/src/scss/mixins.scss';
+@import '/src/scss/constants.scss';
+
+.video-section {
+  .video-container {
+    .video {
+      .controls {
+
+      }
+    }
+
+    .video-header {
+      display: flex;
+      justify-content: space-between;
+      .video-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.875rem;
+        h1 {
+          @include font($font-size: 36px, $font-weight: 700, $color: rgba(25, 38, 70, 1));
+        }
+        p {
+          @include font($font-size: 20px, $color: rgba(194, 194, 194, 1));
+        }
+      }
+      .video-actions {
+        display: flex;
+        align-items: flex-end;
+        gap: 2.5rem;
+        .action-btn {
+          display: flex;
+          gap: 0.625rem;
+          .action-btn-container {
+            @include icon;
+            background-color: rgba(235, 235, 235, 1);
+            border-radius: 20px;
+            padding: 0.625rem 1.25rem;
+            img {
+
+            }
+            p {
+              @include font($color: rgba(25, 38, 70, 1));
+            }
+          }
+        }
+        .button-more-container {
+          @include icon;
+
+        }
+      }
+    }
+  }
+  .channel-info {
+    .channel-header {
+      .channel-logo {
+
+      }
+      .channel-description {
+        h2 {
+
+        }
+        .subscription {
+
+        }
+        .description {
+
+        }
+        .show-more {
+
+        }
+      }
+      .subscribe-btn {
+        @include font($color: rgba(255, 255, 255, 1));
+        padding: 0.625rem 1.25rem;
+        background-color: rgba(255, 0, 0, 1);
+        border-radius: 20px;
+        border: solid;
+      }
+      
+    }
+  }
+}
