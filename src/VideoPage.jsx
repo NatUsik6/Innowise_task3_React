@@ -1,11 +1,60 @@
-
+import React, { useRef, useState, useEffect } from 'react';
 import './scss/header.scss';
 import './scss/mixins.scss';
 import './scss/common.scss';
+import './scss/video-section.scss'
 
 export default function VideoPage() {
+  const videoRef = useRef(null);
+  const progressRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    const handleTimeUpdate = () => setCurrentTime(video.currentTime);
+    const handleLoadedMetadata = () => setDuration(video.duration);
 
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, []);
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const handleProgressChange = (e) => {
+    const video = videoRef.current;
+    const newTime = (e.target.value / 100) * video.duration;
+    video.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+
+  const handleFullscreen = () => {
+    const video = videoRef.current;
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    }
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  };
   return (
   <body>
     <header>
