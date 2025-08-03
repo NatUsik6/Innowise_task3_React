@@ -2,81 +2,258 @@
 @import '/src/scss/constants.scss';
 
 .video-section {
+  padding-left: 5rem;
+  padding-top: 1.875rem;
+
+  @media screen and (max-width: $mobile){
+    padding-top: 1.438rem;
+    padding-left: 0;
+  }
   .video-container {
     .video {
-      .controls {
+      width: 85rem;
+      height: 43.75rem;
+      border-radius: 14px;
 
+      @media screen and (max-width: $mobile) {
+        width: 20rem;
+        height: 11.25rem;
+        border-radius: 0;
       }
     }
 
     .video-header {
+      padding-top: 1.25rem;
       display: flex;
       justify-content: space-between;
+
+      @media screen and (max-width: $mobile) {
+        flex-direction: column;
+        align-items: center;
+      }
+
       .video-text {
         display: flex;
         flex-direction: column;
         gap: 0.875rem;
-        h1 {
-          @include font($font-size: 36px, $font-weight: 700, $color: rgba(25, 38, 70, 1));
+
+        @media screen and (max-width: $mobile) {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
+          padding-left: 1rem;
+          padding-right: 1rem;
         }
-        p {
-          @include font($font-size: 20px, $color: rgba(194, 194, 194, 1));
+
+        .video-title-wrapper {
+          @media screen and (max-width: $mobile) {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+          }
+          h1 {
+            @include font($font-size: 36px, $font-weight: 700, $color: $color-video-section-button);
+            @media screen and (max-width: $mobile) {
+              @include font($font-size: 20px, $font-weight: 700, $color: $color-video-section-button);
+            }
+          }
+          p {
+            @include font($font-size: 20px, $color: $color-subtitle);
+            @media screen and (max-width: $mobile) {
+              @include font($font-size: 12px, $color: $color-subtitle);
+            }
+          }
+        }
+
+        .arrow-down {
+          display: none;
+          @media screen and (max-width: $mobile) {
+            display: flex;
+            width: 0.625rem;
+            height: 0.438rem;
+          }
         }
       }
+
       .video-actions {
-        display: flex;
-        align-items: flex-end;
+        @include flex-center;
         gap: 2.5rem;
+
+        @media screen and (max-width: $mobile) {
+          padding-top: 1.25rem;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          width: 100%;
+          overflow: hidden;
+        }
+
         .action-btn {
           display: flex;
           gap: 0.625rem;
           .action-btn-container {
             @include icon;
-            background-color: rgba(235, 235, 235, 1);
+            background-color: $color-search-background-opacity;
             border-radius: 20px;
             padding: 0.625rem 1.25rem;
-            img {
-
-            }
+            @include flex-center;
+            gap: 0.5rem;
             p {
-              @include font($color: rgba(25, 38, 70, 1));
+              @include font($color: $color-video-section-button);
             }
           }
         }
         .button-more-container {
           @include icon;
-
         }
       }
     }
   }
   .channel-info {
-    .channel-header {
-      .channel-logo {
+    display: flex;
+    gap: 18.875rem;
+    align-items: flex-start;
+    padding-top: 2.375rem;
 
+    @media screen and (max-width: $mobile) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      gap: 3.25rem;
+    }
+
+    .channel-header {
+      display: flex;
+      gap: 0.5rem;
+      width: 57rem;
+
+      @media screen and (max-width: $mobile) {
+        gap: 0.625rem;
+      }
+
+      .food-icon {
+        width: 3.125rem;
+        height: 3.125rem;
+        object-fit: cover;
+        border-radius: 50%;
+        flex-shrink: 0;
       }
       .channel-description {
-        h2 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
 
+        @media screen and (max-width: $mobile) {
+          gap: 0.25rem;
+          justify-content: center;
+        }
+        h2 {
+          @include font($font-size: 26px, $font-weight: 700, $color: $color-name);
+          @media screen and (max-width: $mobile) {
+            @include font($font-weight: 700, $color: $color-name);
+          }
         }
         .subscription {
-
+          @include font($font-size: 13px, $color: $color-subtitle);
+          @media screen and (max-width: $mobile) {
+            display: none;
+          }
         }
         .description {
-
+          @include font($line-height:22px, $color: $color-swiper-button);
+          @media screen and (max-width: $mobile) {
+            display: none;
+          }
         }
         .show-more {
+          @include icon;
+          @include font($font-size: 20px, $color: $color-subtitle);
+          align-self: flex-start;
 
+          @media screen and (max-width: $mobile) {
+            display: none;
+          }
+        }
+
+        .subscription-mobile {
+          display: none;
+          @media screen and (max-width: $mobile) {
+            display: flex;
+            @include font($font-size: 12px, $color: $color-subtitle);
+          }
+        }
+      }      
+    }
+    .subscribe-btn {
+      @include font($color: $color-background);
+      padding: 0.625rem 1.25rem;
+      background-color: $notification-color;
+      border-radius: 20px;
+      border: solid;
+      flex-shrink: 0;
+
+      @media screen and (max-width: $mobile) {
+        display: none;
+      }
+    }
+
+    .subscribe-btn-mobile {
+      display: none;
+      @media screen and (max-width: $mobile) {
+        display: flex;
+        align-self: center;
+        @include icon;
+        @include font($color: $notification-color);
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .video-section {
+    .video-header {
+      .video-actions {
+        .action-btn {
+          .action-btn-container {
+            cursor: pointer;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+
+            &:hover {
+              opacity: 0.6;
+              background-color: lighten($color-search-background, 5%);
+            }
+          }
+        }
+
+        .button-more-container {
+          cursor: pointer;
+          transition: opacity 0.3s ease;
+
+          &:hover {
+            opacity: 0.6;
+          }
         }
       }
-      .subscribe-btn {
-        @include font($color: rgba(255, 255, 255, 1));
-        padding: 0.625rem 1.25rem;
-        background-color: rgba(255, 0, 0, 1);
-        border-radius: 20px;
-        border: solid;
+    }
+
+    .channel-info {
+      .channel-description {
+        .show-more {
+          cursor: pointer;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $color-name;
+          }
+        }
       }
-      
+
+      .subscribe-btn {
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($notification-color, 5%);
+        }
+      }
     }
   }
 }
