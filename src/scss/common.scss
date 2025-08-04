@@ -1,0 +1,33 @@
+@import '/src/scss/constants.scss';
+@import '/src/scss/mixins.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  transition: .3s ease-in-out;
+  box-sizing: border-box;
+}
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  min-height: 100vh;
+
+  @media screen and (max-width: $mobile) {
+    flex-direction: column;
+  }
+}
+
+main {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3.125rem;
+
+  @media screen and (max-width: $mobile) {
+    min-height: auto;
+  }
+}

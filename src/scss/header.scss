@@ -1,0 +1,143 @@
+@import '/src/scss/mixins.scss';
+@import '/src/scss/constants.scss';
+
+.header-container {
+  @include flex-center;
+  justify-content: space-between;
+  height: 7vh;
+  background: $color-background;
+  padding-top: 1.25rem;
+  padding-left: 1.67vw;
+  padding-right: 3.65vw;
+
+  @media screen and (max-width: $mobile){
+    padding-top: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.logo-container {
+  @include flex-center;
+  gap: 1.46vw;
+
+  button {
+    @include icon;
+
+    @media screen and (max-width: $mobile) {
+      display: none;
+    }
+  }
+}
+
+.search-container {
+  flex: 1;
+  @include flex-center;
+  margin-left: 3.75rem;
+
+  @media screen and (max-width: $mobile){
+    margin-left: 7rem;
+    flex: 0;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    max-width: 830px;
+    background: $color-search-background;
+    opacity: $search-opacity;
+    border: none;
+    border-radius: $search-radius;
+    padding: 0.75rem 1.25rem;
+    @include font($color: $color-description, $opacity: 40%);
+
+    &::placeholder {
+      @include font($color: $color-description);
+    }
+
+    @media screen and (max-width: $mobile){
+      display: none;
+    }
+  }
+
+  button {
+    @include flex-center;
+    @include icon;
+    margin-left: -2.5rem;
+  }
+}
+
+.user-actions {
+  @include flex-center;
+  gap: 3.125rem;
+  margin-left: 3.75rem;
+
+  @media screen and (max-width: $mobile){
+    display: none;
+  }
+
+  button {
+    @include icon;
+  }
+
+  button:nth-child(3) {
+    position: relative;
+
+    .notification-badge{
+      position: absolute;
+      @include flex-center;
+      justify-content: center;
+      top: -0.5rem;
+      right: -0.5rem;
+      background: $notification-color;
+      @include font($font-size: 12px, $font-weight: 700, $color: $color-background);
+      border: 1px solid $color-background;
+      border-radius: 50%;
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+  }
+
+  button:nth-child(4) {
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+    }
+  }
+}
+
+.more-actions {
+  display: none;
+
+  @media screen and (max-width: $mobile){
+    display: inline-block;
+    @include icon;
+  }
+}
+
+@media (hover: hover) {
+  .logo-button:hover,
+  .search-container-mobile:hover,
+  .more-actions:hover,
+  .search-container button:hover,
+  .user-actions button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+
+  .logo-link:hover {
+    text-decoration: underline;
+    transition: text-decoration 0.3s ease;
+  }
+
+  .user-actions button:nth-child(4):hover img {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .search-container input[type="text"]:hover {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+  }
+}

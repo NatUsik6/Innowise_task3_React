@@ -1,0 +1,196 @@
+@import '/src/scss/mixins.scss';
+@import '/src/scss/constants.scss';
+
+.sidebar {
+  padding-top: 2rem;
+  padding-right: 4.375rem;
+  width: 100%;
+
+  @media screen and (max-width: $mobile){
+    padding-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 3.875rem;
+  }
+
+  .next-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1.625rem;
+
+    h3 {
+      @include font($font-size: 36px, $font-weight: 700, $color: $color-name);
+
+      @media screen and (max-width: $mobile){
+        @include font($font-size: 20px, $font-weight: 700, $color: $color-name);
+      }
+    }
+    .autoplay {
+      @include flex-center;
+      gap: 0.625rem;
+      span {
+        @include font($font-weight: 700, $color: $color-name);
+        text-transform: uppercase;
+
+        @media screen and (max-width: $mobile) {
+          @include font($font-size: 10px,$font-weight: 700, $color: $color-name);
+        }
+      }
+      .toggle-switch {
+        width: 2.75rem;
+        height: 1.75rem;
+        border-radius: 14px;
+        background: $color-search-background;
+        position: relative;
+        transition: background 0.3s;
+
+        @media screen and (max-width: $mobile) {
+          width: 1.875rem;
+          height: 1.25rem;
+        }
+
+        &.on {
+          background: $color-dot;
+        }
+
+        .dot {
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 50%;
+          background: $color-background;
+          transition: transform 0.3s;
+
+          @media screen and (max-width: $mobile) {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+
+        &.on .dot {
+          transform: translateX(16px);
+
+          @media screen and (max-width: $mobile) {
+            transform: translateX(10px);
+          }
+        }
+      }
+    }
+  }
+
+  .swiper-container {
+    overflow: hidden;
+
+    @media screen and (max-width: $mobile) {
+      height: auto;
+      width: auto;
+      touch-action: pan-y;
+    }
+
+    .swiper-slide {
+      flex: 1;
+      max-width: 23rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      @media screen and (max-width: $mobile) {
+        flex: 1;
+        max-width: 18rem;
+        width: 100%;
+      }
+
+      .video-thumb {
+        width: 100%;
+        height: 13.25rem;
+        min-height: 150px;
+        object-fit: cover;
+        border-radius: 14px;
+
+        @media screen and (max-width: $mobile) {
+          height: 9.375rem;
+        }
+      }
+
+      .video-duration {
+        position: absolute;
+        bottom: 4.8rem;
+        right: 0.625rem;
+        background: $color-video-duration;
+        @include font($font-size: 14px, $color: $color-background);
+        border-radius: 12px;
+        padding: 0.188rem 0.563rem;
+
+        @media screen and (max-width: $mobile) {
+          bottom: 3.875rem;
+        }
+      }
+
+      .video-info {
+        padding-top: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .video-title {
+          @include font($font-size: 26px, $font-weight: 700, $color: $color-name);
+
+          @media screen and (max-width: $mobile){
+            @include font($font-weight: 700, $color: $color-name);
+          }
+        }
+
+        .video-meta-container{
+          display: flex;
+          justify-content: space-between;
+
+          .video-meta {
+            @include font($font-size: 18px, $color: $color-subtitle);
+
+            @media screen and (max-width: $mobile){
+              @include font($font-size: 13px, $color: $color-subtitle);
+            }
+          }
+          .video-author {
+            @include font($font-size: 18px, $color: $color-subtitle);
+
+            @media screen and (max-width: $mobile){
+              @include font($font-size: 13px, $color: $color-subtitle);
+            }
+          }
+        }       
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .sidebar {
+    .next-header {
+      .autoplay {
+        .toggle-switch {
+          cursor: pointer;
+          transition: background 0.3s, box-shadow 0.3s ease;
+
+          &:hover {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+
+    .swiper-container {
+      .swiper-slide {
+        cursor: pointer;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          transform: translateY(-4px);
+        }
+      }
+    }
+  }
+}
